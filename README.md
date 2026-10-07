@@ -43,8 +43,6 @@ Este repositorio contiene el **backend en Spring Boot**. El frontend estará con
   - [Reportes Mensuales por Categoría](Docs/Reportes-Mensuales-Categoria-Requerimientos.md) — gasto agrupado, porcentajes y comparativa mensual.
 - 📁 **Dashboard**
   - [Indicadores Principales](Docs/Indicadores-Principales-Dashboard-Requerimientos.md) — pantalla de entrada: saldo, diezmo pendiente y mayor gasto del mes.
-- 🛠️ **Herramientas de documentación**
-  - [PromptMaestro.txt](Docs/PromptMaestro.txt) — plantilla maestra para generar nuevos documentos de requerimientos de submódulos.
 
 ---
 
@@ -169,7 +167,6 @@ Migración inicial: [`V1__initial_schema.sql`](src/main/resources/db/migration/V
 |----------|-------|
 | ![Diagrama V1](Docs/V1SistemaFinanzas.jpg) | Arquitectura general V1 del sistema |
 | ![Flujo de datos](Docs/Flujo%20de%20Datos%20completo.jpg) | Flujo de datos completo entre módulos |
-| ![Modelo de base de datos](Docs/Sistema%20Finanzas%20Personales_2026-09-16T01_28_49.228Z.png) | Modelo de la base de datos |
 
 ---
 
