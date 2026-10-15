@@ -61,6 +61,11 @@ public class MovimientoService {
             throw new IllegalArgumentException("Solo ingresos pueden marcarse como planificado");
         }
 
+        boolean esExcluido = Boolean.TRUE.equals(requestDTO.excluidoDiezmo());
+        if(requestDTO.tipoMovimiento() == TipoMovimiento.EGRESO && esExcluido ){
+            throw new IllegalArgumentException("Solo los ingresos puedes excluirse del diezmo");
+        }
+
         Categoria categoria = categoriaRepository.findById(requestDTO.categoriaId())
                 .orElseThrow( ()-> new ResourceNotFoundException("Categoria", requestDTO.categoriaId()));
 
@@ -89,6 +94,7 @@ public class MovimientoService {
         movimiento.setCategoria(categoria);
         movimiento.setDescripcion(requestDTO.descripcion());
         movimiento.setPlanificado(Boolean.TRUE.equals(requestDTO.planificado()));
+        movimiento.setExcluidoDiezmo(Boolean.TRUE.equals(requestDTO.excluidoDiezmo()));
 
         Movimiento movimientoActualizado = movimientoRepository.save(movimiento);
 

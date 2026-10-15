@@ -15,8 +15,8 @@ import java.time.YearMonth;
 @RequiredArgsConstructor
 public class SaldoService {
 
-    private static final BigDecimal PORCENTAJE_DIEZMO = new BigDecimal("0.10");
     private final MovimientoRepository movimientoRepository;
+    private final DiezmoService diezmoService;
 
     @Transactional(readOnly = true)
     public SaldoResponse calcularSaldo(YearMonth periodo) {
@@ -27,9 +27,7 @@ public class SaldoService {
 
         BigDecimal totalEgresos = movimientoRepository.sumarPorTipoYPeriodo(TipoMovimiento.EGRESO, inicio, fin);
 
-        BigDecimal baseDiezmo = movimientoRepository.sumarIngresosParaDiezmo(inicio, fin);
-
-        BigDecimal totalDiezmo = baseDiezmo.multiply(PORCENTAJE_DIEZMO);
+        BigDecimal totalDiezmo = diezmoService.calcularMensual(periodo);
 
         BigDecimal saldoDisponible = totalIngresos.subtract(totalEgresos).subtract(totalDiezmo);
 

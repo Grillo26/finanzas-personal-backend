@@ -5,6 +5,7 @@ import com.example.grillo.finanzas_personal.modules.categorias.mapper.CategoriaM
 import com.example.grillo.finanzas_personal.modules.movimientos.dto.MovimientoRequestDTO;
 import com.example.grillo.finanzas_personal.modules.movimientos.dto.MovimientoResponseDTO;
 import com.example.grillo.finanzas_personal.modules.movimientos.entity.Movimiento;
+import com.example.grillo.finanzas_personal.modules.movimientos.service.DiezmoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class MovimientoMapper {
 
     private final CategoriaMapper categoriaMapper;
+    private final DiezmoService diezmoService;
 
     public MovimientoResponseDTO toResponse(Movimiento entity){
         return new MovimientoResponseDTO(
@@ -23,7 +25,8 @@ public class MovimientoMapper {
                 entity.getDescripcion(),
                 categoriaMapper.toResponse(entity.getCategoria()),
                 entity.getFechaCreacion(),
-                entity.isPlanificado()
+                entity.isPlanificado(),
+                diezmoService.calcular(entity)
         );
     }
 
@@ -35,6 +38,7 @@ public class MovimientoMapper {
                 .categoria(categoria)
                 .descripcion(requestDTO.descripcion())
                 .planificado(Boolean.TRUE.equals(requestDTO.planificado()))
+                .excluidoDiezmo(Boolean.TRUE.equals(requestDTO.excluidoDiezmo()))
                 .build();
     }
 }

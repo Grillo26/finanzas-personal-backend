@@ -15,6 +15,7 @@ public record MovimientoResponseDTO(
         String descripcion,
         CategoriaResponseDTO categoria,
         LocalDateTime fechaCreacion,
-        boolean planificado
+        boolean planificado,
+        BigDecimal diezmo
 ) {
 }

@@ -27,7 +27,9 @@ public record MovimientoRequestDTO(
         @Size(max = 200, message = "La descripción no puede superar 200 caracteres")
         String descripcion,
 
-        Boolean planificado
+        Boolean planificado,
+
+        Boolean excluidoDiezmo
 
 ) {
 }
